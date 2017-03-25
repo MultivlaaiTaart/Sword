@@ -82,6 +82,9 @@ public class Guild {
   /// Level of verification for guild
   public let verificationLevel: Int
 
+  /// Connected VoiceStates for guild
+  public var voiceStates = [String:VoiceState]()
+
   // MARK: Initializer
 
   /**
@@ -169,8 +172,7 @@ public class Guild {
     if voiceStates != nil {
       for voiceState in voiceStates! {
         let voiceStateObjc = VoiceState(voiceState)
-
-        self.members[voiceState["user_id"] as! String]!.voiceState = voiceStateObjc
+        self.voiceStates[voiceStateObjc.userId] = voiceStateObjc
       }
     }
   }

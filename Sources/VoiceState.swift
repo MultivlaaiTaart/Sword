@@ -14,6 +14,9 @@ public struct VoiceState {
   /// The ID of the voice channel
   public let channelId: String
 
+  /// The user to which the voice channel belongs
+  public let userId: String
+
   /// Whether or not the user is server deafend
   public let isDeafend: Bool
 
@@ -41,6 +44,7 @@ public struct VoiceState {
   */
   init(_ json: [String: Any]) {
     self.channelId = json["channel_id"] as! String
+    self.userId = json["user_id"] as! String
     self.isDeafend = json["deaf"] as! Bool
     self.isMuted = json["mute"] as! Bool
     self.isSelfDeafend = json["self_deaf"] as! Bool

@@ -40,9 +40,6 @@ public struct Member {
   /// User struct for this member
   public let user: User
 
-  /// Member's current voice state
-  public internal(set) var voiceState: VoiceState?
-
   // MARK: Initializer
 
   /**
