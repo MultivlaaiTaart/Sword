@@ -82,7 +82,7 @@ public class Guild {
   /// Level of verification for guild
   public let verificationLevel: Int
 
-  /// Connected VoiceStates for guild
+  /// Connected VoiceStates for guild mapped by userId
   public var voiceStates = [String:VoiceState]()
 
   // MARK: Initializer
