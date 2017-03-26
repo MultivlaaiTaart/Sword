@@ -38,7 +38,8 @@ class VoiceManager {
       voiceConnection.startWS(identify)
       self.handlers.removeValue(forKey: guildId)
     }else {
-      self.connections[guildId]!.moveChannels(endpoint, identify, self.handlers[guildId]!)
+      guard let handle = self.handlers[guildId] else {return}
+      self.connections[guildId]!.moveChannels(endpoint, identify, handle)
       self.handlers.removeValue(forKey: guildId)
     }
   }
