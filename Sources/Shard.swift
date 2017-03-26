@@ -226,7 +226,14 @@ class Shard {
       ws.onClose = { ws, code, _, _ in
         self.heartbeat = nil
         self.isConnected = false
-        switch CloseOP(rawValue: Int(code!))! {
+
+        guard let code = code else {
+          print(".onClose: code = nil, attempting reconnect")
+          self.reconnect()
+          return
+        }
+
+        switch CloseOP(rawValue: Int(code))! {
           case .authenticationFailed:
             print("[Sword] - Invalid Bot Token")
             break
