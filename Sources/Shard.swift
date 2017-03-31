@@ -233,7 +233,7 @@ class Shard {
           return
         }
 
-        switch CloseOP(rawValue: Int(code))! {
+        switch CloseOP(rawValue: Int(code))! { // 1001????
           case .authenticationFailed:
             print("[Sword] - Invalid Bot Token")
             break

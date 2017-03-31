@@ -316,9 +316,13 @@ extension Shard {
         if channelId != nil {
           let voiceState = VoiceState(data)
 
-          self.sword.guilds[guildId]!.voiceStates[userId] = voiceState
-
-          self.sword.emit(.voiceChannelJoin, with: userId, voiceState)
+            if sword.guilds[guildId]!.voiceStates[userId] == nil {
+                self.sword.guilds[guildId]!.voiceStates[userId] = voiceState
+                self.sword.emit(.voiceChannelJoin, with: userId, voiceState)
+            } else{
+                
+                self.sword.guilds[guildId]!.voiceStates[userId] = voiceState}
+            
         }else {
           self.sword.guilds[guildId]!.voiceStates[userId] = nil
 

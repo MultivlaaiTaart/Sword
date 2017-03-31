@@ -70,7 +70,8 @@ enum CloseOP: Int {
        rateLimited,
        sessionTimeout,
        invalidShard,
-       shardingRequired
+       shardingRequired,
+       someError = 1001
 
 }
 
