@@ -6,18 +6,16 @@
 //  Copyright © 2017 Alejandro Alonso. All rights reserved.
 //
 
-import Foundation
-
 /// Shield class that extends Sword
 open class Shield: Sword {
 
   // MARK: Properties
 
   /// Object pointing command aliases to their respected full name
-  public var commandAliases: [String: String] = [:]
+  public var commandAliases = [String: String]()
 
   /// Object pointing command names to their Command Object
-  public var commands: [String: Command] = [:]
+  public var commands = [String: Command]()
 
   /// Shield Options structure
   public var shieldOptions: ShieldOptions
@@ -96,6 +94,11 @@ open class Shield: Sword {
         }.reduce(0, |)
         guard let permissions = msg.member?.permissions,
               permissions & permission > 0  else { return }
+      }
+
+      if !self.commands[command]!.options.requirements.users.isEmpty {
+        guard let author = msg.author,
+              self.commands[command]!.options.requirements.users.contains(author.id) else { return }
       }
 
       self.commands[command]!.function(msg, arguments)

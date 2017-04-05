@@ -56,13 +56,13 @@ public class VoiceConnection: Eventable {
   public var isPlaying = false
 
   /// Event listeners
-  public var listeners: [Event: [([Any]) -> ()]] = [:]
+  public var listeners = [Event: [([Any]) -> ()]]()
 
   /// Port number for udp client
   var port: Int
 
   /// Secret key to use to encrypt voice data
-  var secret: [UInt8] = []
+  var secret = [UInt8]()
 
   /// The WS voice connection connects to
   var session: WebSocket?
@@ -296,10 +296,9 @@ public class VoiceConnection: Eventable {
 
           self.startUDPSocket(data["port"] as! Int)
 
-          break
         case .sessionDescription:
           self.secret = data["secret_key"] as! [UInt8]
-          break
+
         default:
           break
       }
